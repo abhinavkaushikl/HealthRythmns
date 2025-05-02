@@ -1,0 +1,17 @@
+FROM python:3.9-slim-buster
+
+# Set working directory
+WORKDIR /incidentGeneration
+
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire project
+COPY . .
+
+# Optional echo to confirm Docker build phase
+RUN echo "RUN echo "Docker image for ML pipeline""
+
+# Set entrypoint to run your main pipeline
+ENTRYPOINT ["python", "pipeline.py"]

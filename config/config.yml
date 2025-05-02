@@ -1,0 +1,11 @@
+build:
+  cleaned_data_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\cleaned_data.csv"
+  feature_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\selection_features.csv"
+  randomforestor_data: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\randomforestor_data.csv"
+  rawdata: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\raw\\rawdata.csv"
+  xgboostdata: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\xgboost_data.csv"
+  best_params_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\best_params_path.json"
+  metrics_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\metrics_output_path.csv"
+  #model_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\models\\Randomforestor.pkl"
+  model_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\models\\final_randomforest_model.pkl"
+  prediction_output_path : "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\predictions.csv"

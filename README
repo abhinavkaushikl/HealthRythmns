@@ -1,0 +1,5 @@
+Due to the initial lack of clarity in requirements and insufficient data description, I had to rename several column headers for better understanding and interpretability during development. While this diverges from the original scope, it was necessary to ensure smooth progress.
+
+Originally, the plan was to train two models in parallel—Random Forest and XGBoost—and compare their results. However, due to time constraints, I was only able to implement Random Forest. The XGBoost model was intended to work on a dataset with outliers removed, but that part of the pipeline couldn’t be fully implemented within the given timeframe.
+
+The overall objective was to predict the magnitude of depression levels over time, not just as a binary classification but as a more granular regression problem. While the current implementation covers the foundational pipeline, there is significant potential for enhancement. Additional feature engineering, outlier treatment, model tuning, and thorough test cases could further improve prediction accuracy and model robustness. These would be suitable next steps if the project scope is extended.

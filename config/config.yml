@@ -6,6 +6,8 @@ build:
   xgboostdata: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\xgboost_data.csv"
   best_params_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\best_params_path.json"
   metrics_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\metrics_output_path.csv"
-  #model_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\models\\Randomforestor.pkl"
   model_output_path: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\models\\final_randomforest_model.pkl"
   prediction_output_path : "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\results\\predictions.csv"
+  randomforestor_data_df: "C:\\Users\\kau75421\\OneDrive - Viavi Solutions Inc\\Desktop\\ML AI Reference Document\\healthyfy\\mobilepllc\\data\\processed\\randomforestor_data_df.csv"
+
+

@@ -3,6 +3,8 @@ import joblib
 import os
 import yaml
 import logging
+from sklearn.metrics import mean_squared_error
+import numpy as np
 
 from features.featureselector import FeatureSelector
 from features.Outlierhandler import OutlierHandler
@@ -42,6 +44,12 @@ def save_predictions(predictions, output_path):
     """Save predictions to a CSV file."""
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     pd.DataFrame(predictions, columns=["Prediction"]).to_csv(output_path, index=False)
+
+def calculate_rmse_mse(y_true, y_pred):
+    """Calculates Root Mean Squared Error (RMSE) and Mean Squared Error (MSE)."""
+    mse = mean_squared_error(y_true, y_pred)
+    rmse = np.sqrt(mse)
+    return rmse, mse
 
 def main():
     logging.info("Pipeline started.")
@@ -112,26 +120,54 @@ def main():
         return
 
     try:
-        logging.info("Starting prediction...")
+        logging.info("Starting prediction and evaluation...")
         model_path = config['build']['model_output_path']
         prediction_output_path = config['build']['prediction_output_path']
+        renamed_output_path_for_eval = config['build']['randomforestor_data']  # Assuming target is here
 
         model = load_model(model_path)
         logging.info(f"Model loaded from {model_path}.")
 
-        predict_data = pd.read_csv(renamed_output_path, index_col=False)
-        predict_data = predict_data[renamed_columns]
-        logging.info(f"Prediction data shape: {predict_data.shape}")
+        # Load the data used for prediction, assuming it contains the target variable
+        evaluation_data = pd.read_csv(renamed_output_path_for_eval, index_col=False)
+        X_predict = evaluation_data[renamed_columns]
+        y_true = evaluation_data['Depression']  # Assuming 'phq8_total' is the target column
 
-        predictions = model.predict(predict_data)
+        logging.info(f"Prediction data shape: {X_predict.shape}")
+
+        predictions = model.predict(X_predict)
         save_predictions(predictions, prediction_output_path)
         logging.info(f"Predictions saved to {prediction_output_path}.")
+
+        # Calculate RMSE and MSE
+        #rmse, mse = calculate_rmse_mse(y_true, predictions)
+        #logging.info(f"RMSE on prediction data: {rmse}")
+        #logging.info(f"MSE on prediction data: {mse}")
+
+        # ✅ Evaluate on unseen data
+        try:
+            logging.info("Starting evaluation on unseen data...")
+
+            unseen_data_path = config['build']['randomforestor_data_df']  # Add this in your config.yml
+            unseen_data = pd.read_csv(unseen_data_path)
+
+            X_unseen = unseen_data[renamed_columns]
+            y_unseen = unseen_data['Depression']  # Adjust if your target column is named differently
+
+            predictions_unseen = model.predict(X_unseen)
+            rmse_unseen, mse_unseen = calculate_rmse_mse(y_unseen, predictions_unseen)
+
+            logging.info(f"RMSE on unseen data: {rmse_unseen}")
+            logging.info(f"MSE on unseen data: {mse_unseen}")
+
+        except Exception as e:
+            logging.error(f"Unseen data evaluation error: {e}")
+
     except Exception as e:
-        logging.error(f"Prediction error: {e}")
+        logging.error(f"Prediction and evaluation error: {e}")
         return
 
     logging.info("Pipeline executed successfully.")
 
 if __name__ == "__main__":
     main()
-    

@@ -63,34 +63,5 @@ class ColumnRenamer:
             columns.remove('Depression')
         return list(columns)
     
-def load_config():
-    
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(script_dir, '..', 'config', 'config.yml')
 
-    print(f"Looking for config at: {config_path}")
-
-    try:
-        with open(config_path, 'r') as f:
-            config_data = yaml.safe_load(f)
-            if config_data is None:
-                raise ValueError("YAML file loaded as None — check if it's empty or malformed.")
-            print("Loaded config:", config_data)
-            return config_data
-    except Exception as e:
-        print(f"Failed to load config: {e}")
-        raise
-
-
-if __name__ == "__main__":
-    config = load_config()
-
-    cleaned_data_path = config['build']['feature_output_path']
-    renamed_output_path = config['build']['randomforestor_data']
-
-    renamer = ColumnRenamer(input_path=cleaned_data_path, output_path=renamed_output_path)
-    renamer.load_data()
-    renamer.rename_columns()
-    renamed_features = renamer.get_renamed_features()
-    renamer.save_data()
 

@@ -67,33 +67,6 @@ class FeatureSelector:
         except Exception as e:
             print(f"Error saving selected features: {e}")
 
-# Updated config loader to use 'config/config.yml'
-def load_config():
-    import os
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(script_dir, '..', 'config', 'config.yml')
-
-    print(f"Looking for config at: {config_path}")  # Debug path
-
-    try:
-        with open(config_path, 'r') as f:
-            config_data = yaml.safe_load(f)
-            print("Loaded config:", config_data)  # Debug contents
-            return config_data
-    except Exception as e:
-        print(f"Failed to load config from {config_path}: {e}")
-        raise
 
 
-if __name__ == "__main__":
-    config = load_config()
 
-    cleaned_data_path = config['build']['cleaned_data_path']
-    feature_output_path = config['build']['feature_output_path']
-
-    selector = FeatureSelector(input_path=cleaned_data_path, target_col='phq8_total', top_k=10)
-    selector.load_data()
-    selector.correlation_method()
-    selector.kbest_method()
-    selector.random_forest_method()
-    selector.save_selected_features(feature_output_path)

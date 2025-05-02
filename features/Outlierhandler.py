@@ -66,35 +66,4 @@ class OutlierHandler:
             print(f"Error saving cleaned data: {e}")
             raise
 
-def load_config():
-    """Load the configuration file for file paths."""
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(script_dir, '..', 'config', 'config.yml')
 
-    try:
-        with open(config_path, 'r') as f:
-            config_data = yaml.safe_load(f)
-            return config_data
-    except Exception as e:
-        print(f"Failed to load config from {config_path}: {e}")
-        raise
-
-if __name__ == "__main__":
-    # Load config to get paths
-    config = load_config()
-
-    # Paths from config
-    cleaned_data_path = config['build']['feature_output_path']
-    xgboost_output_path = config['build']['xgboostdata']
-
-    # Initialize the OutlierHandler class
-    outlier_handler = OutlierHandler(input_path=cleaned_data_path, output_path=xgboost_output_path)
-    
-    # Load data
-    outlier_handler.load_data()
-    
-    # Handle outliers
-    outlier_handler.handle_outliers()
-    
-    # Save the cleaned data
-    outlier_handler.save_data()
